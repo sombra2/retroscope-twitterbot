@@ -42,7 +42,7 @@ client = tweepy.Client(
                     access_token_secret=credentials.access_token_secret
                     )
 
-# time.sleep(random.randrange(0,1800)) #the first tweet will got at a random time within the first 30 minutes once it executes
+time.sleep(random.randrange(0,1800)) #the first tweet will got at a random time within the first 30 minutes once it executes
 
 # now the tweets
 for i in range(len(article_l)):
