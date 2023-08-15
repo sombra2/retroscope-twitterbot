@@ -33,17 +33,19 @@ consumer_secret = credentials.consumer_secret
 access_token = credentials.access_token
 access_token_secret = credentials.access_token_secret
 
-# authentication of consumer key and secret
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+# authentication
+client = tweepy.Client(
+                    bearer_token=credentials.bearer_token,
+                    consumer_key=credentials.consumer_key,
+                    consumer_secret=credentials.consumer_secret,
+                    access_token=credentials.access_token,
+                    access_token_secret=credentials.access_token_secret
+                    )
 
-# authentication of access token and secret
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
-
-time.sleep(random.randrange(0,1800)) #the first tweet will got at a random time within the first 30 minutes once it executes
+# time.sleep(random.randrange(0,1800)) #the first tweet will got at a random time within the first 30 minutes once it executes
 
 # now the tweets
 for i in range(len(article_l)):
-	api.update_status(status ="#OnThisDayInHistory: " + re.sub(r'\(.*?\)', '', article_l[i]))
-	#random time between tweets
-	time.sleep(random.randrange(9000,12600))
+    client.create_tweet(text = "#OnThisDayInHistory: " + re.sub(r'\(.*?\)', '', article_l[i]))
+    #random time between tweets
+    time.sleep(random.randrange(9000,12600))
